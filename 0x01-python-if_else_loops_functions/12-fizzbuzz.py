@@ -11,6 +11,6 @@ def fizzbuzz():
         else:
             print(i, end=" ")
 
-# Test case
+# Call the function
 fizzbuzz()
-print("")
+
