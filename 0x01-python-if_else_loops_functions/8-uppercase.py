@@ -7,7 +7,7 @@ def uppercase(s):
             result += chr(ord(char) - 32)
         else:
             result += char
-    print("{}".format(result))
+    print("{}".format(result), end="")
 
 # Test cases
 uppercase("best")
