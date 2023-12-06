@@ -13,17 +13,17 @@ def roman_to_int(roman_string):
         'M': 1000
     }
 
-    result = 0
+    result = []
     prev_value = 0
 
     for char in reversed(roman_string):
         value = roman_numerals.get(char, 0)
 
         if value < prev_value:
-            result -= value
+            result.append(-value)
         else:
-            result += value
+            result.append(value)
 
         prev_value = value
 
-    return result
+    return sum(result)
