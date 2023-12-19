@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+k#!/usr/bin/python3
 """This module defines a class Node that defines a node of a singly linked list
 and a class SinglyLinkedList that defines a singly linked list"""
 
@@ -19,7 +19,7 @@ class Node:
     @data.setter
     def data(self, value):
         """This property setter sets the data of the node"""
-        if type(value) is not int:
+        if not isinstance(value, int):
             raise TypeError("data must be an integer")
         self.__data = value
 
@@ -31,7 +31,7 @@ class Node:
     @next_node.setter
     def next_node(self, value):
         """This property setter sets the next_node of the node"""
-        if value is not None and type(value) is not Node:
+        if value is not None and not isinstance(value, Node):
             raise TypeError("next_node must be a Node object")
         self.__next_node = value
 
@@ -56,7 +56,7 @@ class SinglyLinkedList:
             new_node.next_node = current.next_node
             current.next_node = new_node
 
-    def __str__(self):
+    def __repr__(self):
         """This method returns the printable representation of the list"""
         result = ""
         current = self.__head
@@ -64,3 +64,4 @@ class SinglyLinkedList:
             result += str(current.data) + "\n"
             current = current.next_node
         return result[:-1]
+
