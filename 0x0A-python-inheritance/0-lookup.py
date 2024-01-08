@@ -1,14 +1,5 @@
 #!/usr/bin/python3
 """Module with function to get attributes and methods of an object"""
-"""
-Returns a list object with the available attributes and methods of an object.
-
-Args:
-    obj (object): The object to lookup.
-
-Returns:
-    list: List containing the attributes and methods of the object.
-"""
 
 
 def lookup(obj):
