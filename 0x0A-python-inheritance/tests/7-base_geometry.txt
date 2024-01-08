@@ -1,0 +1,12 @@
+# Test Case for 7-base_geometry.py
+
+Create an instance of BaseGeometry and perform integer validation.
+
+integer_validator("my_int", 12)
+integer_validator("width", 89)
+
+# Test with invalid values
+integer_validator("name", "John")  # Expecting TypeError
+integer_validator("age", 0)  # Expecting ValueError
+integer_validator("distance", -4)  # Expecting ValueError
+
