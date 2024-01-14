@@ -73,3 +73,7 @@ class Rectangle(Base):
         else:
             self.__y = value
 
+    def area(self):
+        """Public method to calculate the area of the Rectangle."""
+        return self.__width * self.__height
+
