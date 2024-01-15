@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module defining the Base class."""
 import json
+import csv
 
 class Base:
     """Base class for managing id attribute in all future classes."""
@@ -41,14 +42,14 @@ class Base:
             return []
         else:
             return json.loads(json_string)
-    
+
     @classmethod
     def create(cls, **dictionary):
         """Class method to return an instance with all attributes already set."""
-        dummy_instance = cls(1, 1)
-        dummy_instance.update(**dictionary)
+        dummy_instance = cls(1, 1)  # Create a dummy instance with "dummy" mandatory attributes
+        dummy_instance.update(**dictionary)  # Update the dummy instance with real values from dictionary
         return dummy_instance
-  
+
     @classmethod
     def load_from_file(cls):
         """Class method to return a list of instances from a file."""
@@ -58,6 +59,31 @@ class Base:
                 json_string = file.read()
                 list_dicts = cls.from_json_string(json_string)
                 list_objs = [cls.create(**obj) for obj in list_dicts]
+                return list_objs
+        except FileNotFoundError:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Class method to serialize and save instances to a CSV file."""
+        filename = cls.__name__ + ".csv"
+        with open(filename, "w", newline='') as file:
+            csv_writer = csv.writer(file)
+            if list_objs is not None:
+                for obj in list_objs:
+                    csv_writer.writerow(obj.to_dictionary().values())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Class method to deserialize and load instances from a CSV file."""
+        filename = cls.__name__ + ".csv"
+        try:
+            with open(filename, "r", newline='') as file:
+                csv_reader = csv.reader(file)
+                list_objs = []
+                for row in csv_reader:
+                    dict_values = [int(value) for value in row]
+                    list_objs.append(cls.create(**dict(zip(cls.create().__dict__.keys(), dict_values))))
                 return list_objs
         except FileNotFoundError:
             return []
