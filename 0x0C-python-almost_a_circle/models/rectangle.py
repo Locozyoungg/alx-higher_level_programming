@@ -89,3 +89,8 @@ class Rectangle(Base):
         return "[Rectangle] ({}) {}/{} - {}/{}".format(
             self.id, self.__x, self.__y, self.__width, self.__height)
 
+    def update(self, *args):
+        """Public method to update attributes."""
+        attr_list = ['id', 'width', 'height', 'x', 'y']
+        for idx, arg in enumerate(args):
+            setattr(self, attr_list[idx], arg)
