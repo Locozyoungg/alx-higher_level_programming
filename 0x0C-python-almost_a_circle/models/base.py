@@ -3,6 +3,7 @@
 import json
 import csv
 
+
 class Base:
     """Base class for managing id attribute in all future classes."""
 
@@ -71,7 +72,11 @@ class Base:
             csv_writer = csv.writer(file)
             if list_objs is not None:
                 for obj in list_objs:
-                    csv_writer.writerow(obj.to_dictionary().values())
+                    if cls.__name__ == "Rectangle":
+                        row = [obj.id, obj.width, obj.height, obj.x, obj.y]
+                    elif cls.__name__ == "Square":
+                        row = [obj.id, obj.size, obj.x, obj.y]
+                    csv_writer.writerow(row)
 
     @classmethod
     def load_from_file_csv(cls):
@@ -82,8 +87,12 @@ class Base:
                 csv_reader = csv.reader(file)
                 list_objs = []
                 for row in csv_reader:
-                    dict_values = [int(value) for value in row]
-                    list_objs.append(cls.create(**dict(zip(cls.create().__dict__.keys(), dict_values))))
+                    if cls.__name__ == "Rectangle":
+                        dict_values = [int(value) for value in row]
+                        list_objs.append(cls.create(**dict(zip(cls.create().__dict__.keys(), dict_values))))
+                    elif cls.__name__ == "Square":
+                        dict_values = [int(value) for value in row]
+                        list_objs.append(cls.create(**dict(zip(cls.create().__dict__.keys(), dict_values))))
                 return list_objs
         except FileNotFoundError:
             return []
