@@ -20,6 +20,17 @@ class Square(Rectangle):
         self.width = value
         self.height = value
 
+    def update(self, *args, **kwargs):
+        """Public method to update attributes."""
+        attr_list = ['id', 'size', 'x', 'y']
+
+        if args:
+            for idx, arg in enumerate(args):
+                setattr(self, attr_list[idx], arg)
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
+
     def __str__(self):
         """Overridden __str__ method to return a formatted string."""
         return "[Square] ({}) {}/{} - {}".format(
