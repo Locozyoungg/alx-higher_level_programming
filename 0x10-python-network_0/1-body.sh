@@ -1,3 +1,3 @@
 #!/bin/bash
-# This script takes a URL, sends a GET request, and displays the body of the response for a 200 status code
-curl -s -X GET -i "$1" | awk '/HTTP\/1.1 200 OK/{flag=1; next} flag' | tail -n +3
+# Get the response body for a given URL for 200 status code responses.
+curl -sL "$1"
