@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-"""
-Sends a request to a URL and displays the body of the response, managing urllib.error.HTTPError exceptions.
+"""A script that:
+- takes in a URL,
+- sends a request to the URL
+- displays the body of the response (decoded in utf-8).
 """
 
 import urllib.request
